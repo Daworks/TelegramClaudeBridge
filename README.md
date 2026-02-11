@@ -4,6 +4,11 @@ Telegram Bot을 통해 Claude Code를 원격으로 제어하는 브릿지 애플
 
 Grammy (TypeScript) + Claude Agent SDK 기반으로, 로컬 머신에서 실행됩니다.
 
+## 사전 요구사항
+
+- **Node.js** (v18 이상 권장)
+- TypeScript는 `devDependencies`에 포함되어 있으므로 글로벌 설치 불필요 (`npm install` 시 자동 설치)
+
 ## 설치
 
 ```bash
