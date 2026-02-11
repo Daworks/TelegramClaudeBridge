@@ -1,3 +1,5 @@
+import { resolve } from "node:path";
+import { homedir } from "node:os";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -9,6 +11,12 @@ export const Config = {
     .map((id) => parseInt(id.trim(), 10))
     .filter((id) => !isNaN(id)),
   dataDir: process.env.DATA_DIR ?? "./data",
+  projectBaseDir: resolve(
+    (process.env.PROJECT_BASE_DIR ?? "~/develope").replace(
+      /^~/,
+      homedir(),
+    ),
+  ),
   approvalTimeoutMs: parseInt(
     process.env.APPROVAL_TIMEOUT_MS ?? "300000",
     10,

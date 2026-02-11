@@ -57,6 +57,22 @@ AUTHORIZED_USERS=123456789
 AUTHORIZED_USERS=123456789, 987654321
 ```
 
+### PROJECT_BASE_DIR
+
+`/project` 명령에서 상대 경로의 기준이 되는 디렉토리입니다. 기본값은 `~/develope`입니다.
+
+```env
+PROJECT_BASE_DIR=~/develope
+```
+
+예를 들어 `PROJECT_BASE_DIR=~/develope`로 설정하면:
+
+| 입력 | 해석 결과 |
+|------|-----------|
+| `/project my-app` | `~/develope/my-app` |
+| `/project ~/other/path` | `~/other/path` (`~/`는 홈 기준) |
+| `/project /absolute/path` | `/absolute/path` (절대경로 그대로) |
+
 ### DATA_DIR
 
 세션 데이터가 저장되는 디렉토리 경로입니다. 기본값은 프로젝트 루트의 `./data`입니다.
@@ -82,6 +98,7 @@ APPROVAL_TIMEOUT_MS=300000
 ```env
 BOT_TOKEN=1234567890:ABCdefGHIjklMNOpqrsTUVwxyz
 AUTHORIZED_USERS=123456789
+PROJECT_BASE_DIR=~/develope
 DATA_DIR=./data
 APPROVAL_TIMEOUT_MS=300000
 ```
@@ -97,7 +114,7 @@ npm start
 | 명령어 | 설명 |
 |--------|------|
 | `/start` | 환영 메시지 |
-| `/project <name>` | 프로젝트 설정 (`~/develope/` 기준 상대경로) |
+| `/project <name>` | 프로젝트 설정 (`PROJECT_BASE_DIR` 기준 상대경로) |
 | `/project` | 현재 프로젝트 확인 |
 | `/session` | 세션 정보 조회 |
 | `/clear` | 대화 초기화 (프로젝트 유지, 새 세션) |

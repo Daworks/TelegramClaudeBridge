@@ -3,8 +3,7 @@ import { resolve } from "node:path";
 import { homedir } from "node:os";
 import type { Context } from "grammy";
 import type { SessionManager } from "../../claude/SessionManager.js";
-
-const BASE_PATH = resolve(homedir(), "develope");
+import { Config } from "../../utils/Config.js";
 
 function expandPath(p: string): string {
   if (p.startsWith("~/")) {
@@ -13,8 +12,7 @@ function expandPath(p: string): string {
   if (p.startsWith("/")) {
     return resolve(p);
   }
-  // 상대 경로는 ~/develope/ 기준으로 해석
-  return resolve(BASE_PATH, p);
+  return resolve(Config.projectBaseDir, p);
 }
 
 export function createProjectCommand(sessionManager: SessionManager) {
@@ -25,7 +23,6 @@ export function createProjectCommand(sessionManager: SessionManager) {
     const text = ctx.message?.text ?? "";
     const args = text.replace(/^\/project\s*/, "").trim();
 
-    // 인자 없이 호출: 현재 프로젝트 표시
     if (!args) {
       const session = sessionManager.get(userId);
       if (session) {
