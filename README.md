@@ -73,6 +73,32 @@ PROJECT_BASE_DIR=~/develope
 | `/project ~/other/path` | `~/other/path` (`~/`는 홈 기준) |
 | `/project /absolute/path` | `/absolute/path` (절대경로 그대로) |
 
+### ALLOWED_TOOLS
+
+Claude Code가 실행할 수 있는 도구 목록입니다. 쉼표로 구분하며, 여기에 포함된 도구만 자동 승인됩니다.
+
+```env
+ALLOWED_TOOLS=Bash,Read,Write,Edit,Glob,Grep,NotebookEdit,WebSearch,WebFetch,Task,TodoWrite
+```
+
+사용 가능한 도구:
+
+| 도구 | 설명 |
+|------|------|
+| `Bash` | 터미널 명령 실행 |
+| `Read` | 파일 읽기 |
+| `Write` | 파일 생성/덮어쓰기 |
+| `Edit` | 파일 부분 수정 |
+| `Glob` | 파일 패턴 검색 |
+| `Grep` | 파일 내용 검색 |
+| `NotebookEdit` | Jupyter 노트북 편집 |
+| `WebSearch` | 웹 검색 |
+| `WebFetch` | 웹 페이지 내용 가져오기 |
+| `Task` | 하위 에이전트 실행 |
+| `TodoWrite` | 작업 목록 관리 |
+
+> MCP 도구(`mcp__`로 시작)는 목록과 무관하게 항상 자동 승인됩니다.
+
 ### DATA_DIR
 
 세션 데이터가 저장되는 디렉토리 경로입니다. 기본값은 프로젝트 루트의 `./data`입니다.
@@ -99,6 +125,7 @@ APPROVAL_TIMEOUT_MS=300000
 BOT_TOKEN=1234567890:ABCdefGHIjklMNOpqrsTUVwxyz
 AUTHORIZED_USERS=123456789
 PROJECT_BASE_DIR=~/develope
+ALLOWED_TOOLS=Bash,Read,Write,Edit,Glob,Grep,NotebookEdit,WebSearch,WebFetch,Task,TodoWrite
 DATA_DIR=./data
 APPROVAL_TIMEOUT_MS=300000
 ```
