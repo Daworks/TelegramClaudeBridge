@@ -17,6 +17,13 @@ export const Config = {
       homedir(),
     ),
   ),
+  allowedTools: (
+    process.env.ALLOWED_TOOLS ??
+    "Bash,Read,Write,Edit,Glob,Grep,NotebookEdit,WebSearch,WebFetch,Task,TodoWrite"
+  )
+    .split(",")
+    .map((t) => t.trim())
+    .filter(Boolean),
   approvalTimeoutMs: parseInt(
     process.env.APPROVAL_TIMEOUT_MS ?? "300000",
     10,

@@ -8,6 +8,7 @@ import {
 } from "@anthropic-ai/claude-agent-sdk";
 import { SessionManager } from "./SessionManager.js";
 import { autoApproveHook } from "./hooks/AutoApproveHook.js";
+import { Config } from "../utils/Config.js";
 import { createLogger } from "../utils/Logger.js";
 
 const log = createLogger("Claude");
@@ -47,11 +48,7 @@ export class ClaudeService {
     const baseOptions: Options = {
       cwd: session.projectPath,
       permissionMode: "default",
-      allowedTools: [
-        "Bash", "Read", "Write", "Edit", "Glob", "Grep",
-        "NotebookEdit", "WebSearch", "WebFetch",
-        "Task", "TodoWrite",
-      ],
+      allowedTools: Config.allowedTools,
       hooks: {
         PreToolUse: [
           { hooks: [autoApproveHook] },
